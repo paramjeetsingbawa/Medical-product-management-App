@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jee="http://www.springframework.org/schema/jee"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
+
+    <jee:jndi-lookup id="dataSource" jndi-name="jdbc/bpelseNonXA"/>
+
+    <!--<bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+        <property name="username" value="vit_esb"/>
+        <property name="password" value="vit_esb"/>
+    </bean>-->
+    
+    <bean id="monitoringDao" class="com.logicoy.openjbi.dao.MonitoringDao">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--<bean id="csvBioReader" class="com.vitality.humana.csvbio.reader.CSVBioReader">
+        <property name="dao" ref="csvBioDao"/>
+    </bean>
+
+    <bean id="csvBioProcessor" class="com.vitality.humana.csvbio.processor.CSVBioProcessor">
+        <property name="dao" ref="csvBioDao"/>
+    </bean>-->
+
+    
+
+</beans>
